@@ -1,0 +1,62 @@
+package Test;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import Base.BaseTest;
+
+public class PaymentInformationTest extends BaseTest {
+	
+	@Test
+	public void VerifyPaymentInformation() {
+		
+		 driver.get("https://www.saucedemo.com/");
+
+	        driver.findElement(By.id("user-name"))
+	              .sendKeys("standard_user");
+
+	        driver.findElement(By.id("password"))
+	              .sendKeys("secret_sauce");
+	        
+	        driver.findElement(By.id("login-button"))
+            .click();
+
+		
+	// verify order item
+		Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(),'Sauce Labs Backpack')]")).isDisplayed());
+		
+		// verify payment information 
+		Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(),'PaymentInformation')]")).isDisplayed());
+		
+		// verify shipping Information
+		Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(),'ShippingInformation')]")).isDisplayed());
+		
+		// Verify Price Total
+        Assert.assertTrue(
+            driver.findElement(By.xpath("//*[contains(text(),'Price Total')]"))
+                  .isDisplayed()
+        );
+
+        // Verify Item Total
+        Assert.assertTrue(
+            driver.findElement(By.xpath("//*[contains(text(),'Item total: $39.98')]"))
+                  .isDisplayed()
+        );
+
+        // Verify Tax
+        Assert.assertTrue(
+            driver.findElement(By.xpath("//*[contains(text(),'Tax: $3.20')]"))
+                  .isDisplayed()
+        );
+
+        // Verify Final Total
+        Assert.assertTrue(
+            driver.findElement(By.xpath("//*[contains(text(),'Total: $43.18')]"))
+                  .isDisplayed()
+        );
+    }
+
+	}
+
+

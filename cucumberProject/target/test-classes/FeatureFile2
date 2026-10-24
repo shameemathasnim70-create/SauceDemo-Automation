@@ -1,0 +1,8 @@
+@product
+Feature: product search Functionality
+
+Scenario : search for a product
+
+Given:the user is on the product search page
+when:the user selects a product
+Then:the product details page should be displayed
